@@ -14,7 +14,7 @@ export const useFetchItems = (url) => {
             try {
                 const networkStatus = await Network.getNetworkStateAsync();
                 const items = await AsyncStorage.getItem('items')
-                if (items === null || !networkStatus.isConnected) {
+                if (items === null && networkStatus.isConnected) {
                     const resp = await axios.get(url);
                     const data = await resp?.data;
 
